@@ -44,7 +44,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns>List of all sample source value ranges</returns>
         public List<OnboardSampleSourceValueRange> GetAll(string sourceName)
         {
-            return GetObject<List<OnboardSampleSourceValueRange>>($"/api/v1/onboardSamples/sources/{sourceName}/valueRanges");
+            return GetObject<List<OnboardSampleSourceValueRange>>($"/api/v1/onboardSamples/sources/{EncodeRouteValue(sourceName)}/valueRanges");
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns>Sample sources value range for specific ship (single entry in array)</returns>
         public OnboardSampleSourceValueRange Get(string sourceName, int imoNumber)
         {
-            return GetObject<OnboardSampleSourceValueRange>($"/api/v1/ships/{imoNumber}/onboardSamples/{sourceName}/valueRange");
+            return GetObject<OnboardSampleSourceValueRange>($"/api/v1/ships/{imoNumber}/onboardSamples/{EncodeRouteValue(sourceName)}/valueRange");
         }
 
         /// <summary>

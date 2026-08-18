@@ -43,6 +43,16 @@ namespace BlueTracker.SDK.Performance.Core
             _httpClient.DefaultRequestHeaders.Authorization = GetAuthHeader();
         }
 
+        /// <summary>
+        /// URL-encodes a value before it is inserted into a request route.
+        /// </summary>
+        /// <param name="value">The value to encode.</param>
+        /// <returns>The encoded value, an empty string if the value is null.</returns>
+        protected static string EncodeRouteValue(string value)
+        {
+            return string.IsNullOrEmpty(value) ? string.Empty : Uri.EscapeDataString(value);
+        }
+
         protected TR PostObject<TR, TI>(TI postObject, string route)
         {
             var json = JsonConvert.SerializeObject(postObject,

@@ -53,7 +53,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns>The sample source</returns>
         public OnboardSampleSource Get(string sourceName)
         {
-            return GetObject<OnboardSampleSource>($"/api/v1/onboardSamples/sources/{sourceName}");
+            return GetObject<OnboardSampleSource>($"/api/v1/onboardSamples/sources/{EncodeRouteValue(sourceName)}");
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public OnboardSampleSource Create(string sourceName)
         {
-            return PostEmpty<OnboardSampleSource>($"/api/v1/onboardSamples/sources?sourceName={sourceName}");
+            return PostEmpty<OnboardSampleSource>($"/api/v1/onboardSamples/sources?sourceName={EncodeRouteValue(sourceName)}");
         }
     }
 }

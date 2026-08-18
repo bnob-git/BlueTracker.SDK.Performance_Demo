@@ -57,7 +57,7 @@ namespace BlueTracker.SDK.Performance.Clients
         public OnboardSampleSourceAssignment Post(int imoNumber, string sourceName, DateTime validFrom)
         {
             return PostEmpty<OnboardSampleSourceAssignment>(
-                $"/api/v1/ships/{imoNumber}/onboardSampleSourceAssignments?sourceName={sourceName}&validFrom={validFrom:yyyy-MM-ddTHH:mm}");
+                $"/api/v1/ships/{imoNumber}/onboardSampleSourceAssignments?sourceName={EncodeRouteValue(sourceName)}&validFrom={validFrom:yyyy-MM-ddTHH:mm}");
         }
     }
 }
