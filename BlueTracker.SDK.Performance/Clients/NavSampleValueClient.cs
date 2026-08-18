@@ -38,7 +38,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns>The nav sample object.</returns>
         public NavSample GetSpecific(string sourceName, int imoNumber, int customId)
         {
-            var reqString = $"/api/v1/ships/{imoNumber}/navSamples/{sourceName}/{customId}";
+            var reqString = $"/api/v1/ships/{imoNumber}/navSamples/{Escape(sourceName)}/{customId}";
             var ret = GetObject<NavSample>(reqString);
             return ret;
         }
@@ -77,7 +77,7 @@ namespace BlueTracker.SDK.Performance.Clients
         public DateLimitedSearchResult<NavSample> GetAllBySourceName(string sourceName, int imoNumber,
             DateTime start, DateTime end, int page = 0, int pageSize = 100)
         {
-            var reqString = $"/api/v1/ships/{imoNumber}/navSamples/{sourceName}?start={start:yyyy-MM-ddTHH:mm}&end={end:yyyy-MM-ddTHH:mm}&page={page}&pageSize={pageSize}";
+            var reqString = $"/api/v1/ships/{imoNumber}/navSamples/{Escape(sourceName)}?start={start:yyyy-MM-ddTHH:mm}&end={end:yyyy-MM-ddTHH:mm}&page={page}&pageSize={pageSize}";
 
             var ret = GetObject<DateLimitedSearchResult<NavSample>>(reqString);
             return ret;
@@ -92,7 +92,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public int Create(string sourceName, int imoNumber, List<NavSampleData> navSampleData)
         {
-            return PostObject<int, List<NavSampleData>>(navSampleData, $"/api/v1/ships/{imoNumber}/navSamples/{sourceName}");
+            return PostObject<int, List<NavSampleData>>(navSampleData, $"/api/v1/ships/{imoNumber}/navSamples/{Escape(sourceName)}");
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public NavSample Delete(string sourceName, int imoNumber, int customId)
         {
-            var reqString = $"/api/v1/ships/{imoNumber}/navSamples/{sourceName}/{customId}";
+            var reqString = $"/api/v1/ships/{imoNumber}/navSamples/{Escape(sourceName)}/{customId}";
             return DeleteObject<NavSample>(reqString);
         }
 

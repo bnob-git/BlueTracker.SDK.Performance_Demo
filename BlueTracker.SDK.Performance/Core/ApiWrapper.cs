@@ -323,6 +323,17 @@ namespace BlueTracker.SDK.Performance.Core
             }
         }
 
+        /// <summary>
+        /// Escapes a caller-supplied value so that it can safely be used as a single
+        /// path segment or query string value of a request route.
+        /// </summary>
+        /// <param name="value">The value to escape.</param>
+        /// <returns>The escaped value.</returns>
+        protected static string Escape(string value)
+        {
+            return value == null ? string.Empty : Uri.EscapeDataString(value);
+        }
+
         private string CombineRoute(string route)
         {
             var requestString = _serverAddress.TrimEnd('/') + "/" + route.TrimStart('/');

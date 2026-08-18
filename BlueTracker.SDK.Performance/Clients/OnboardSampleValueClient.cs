@@ -48,7 +48,7 @@ namespace BlueTracker.SDK.Performance.Clients
         public int PostSample(string sourceName, int imoNumber, params Model.Basic.Sample.Sample[] samples)
         {
             return PostObject<int, List<Model.Basic.Sample.Sample>>(samples.ToList(),
-                $"api/v1/onboardSamples/sources/{sourceName}/{imoNumber}");
+                $"api/v1/onboardSamples/sources/{Escape(sourceName)}/{imoNumber}");
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns>Query result with samples.</returns>
         public List<Model.Basic.Sample.Sample> QueryBySource(string sourceName, int imoNumber, DateTime? start = null, DateTime? end = null)
         {
-            var url = $"api/v1/onboardSamples/sources/{sourceName}/{imoNumber}";
+            var url = $"api/v1/onboardSamples/sources/{Escape(sourceName)}/{imoNumber}";
 
             if (start != null && end != null)
                 url += $"?start={start:O}&end={end:O}";
