@@ -323,6 +323,26 @@ namespace BlueTracker.SDK.Performance.Core
             }
         }
 
+        /// <summary>
+        /// Validates and URL-encodes a caller-supplied identifier so that it cannot alter the structure of a route.
+        /// </summary>
+        /// <param name="value">The identifier value.</param>
+        /// <param name="parameterName">Name of the parameter, used for exception messages.</param>
+        protected static string EncodePathSegment(string value, string parameterName)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException($"{parameterName} must not be null or empty.", parameterName);
+            }
+
+            if (value.IndexOfAny(new[] { '/', '\\' }) >= 0 || value.Contains(".."))
+            {
+                throw new ArgumentException($"{parameterName} must not contain path separators.", parameterName);
+            }
+
+            return Uri.EscapeDataString(value);
+        }
+
         private string CombineRoute(string route)
         {
             var requestString = _serverAddress.TrimEnd('/') + "/" + route.TrimStart('/');
