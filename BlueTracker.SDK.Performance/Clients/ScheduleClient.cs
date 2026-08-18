@@ -93,7 +93,8 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public Schedule UpdateScheduleByCustomId(int imoNumber, string customId, DTO.Post.Schedule schedule)
         {
-            return PutObject<Schedule, DTO.Post.Schedule>(schedule, $"/api/v1/ships/{imoNumber}/schedules/{customId}/custom");
+            var encodedCustomId = EncodePathSegment(customId, nameof(customId));
+            return PutObject<Schedule, DTO.Post.Schedule>(schedule, $"/api/v1/ships/{imoNumber}/schedules/{encodedCustomId}/custom");
         }
 
         /// <summary>
@@ -115,7 +116,8 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public Schedule DeleteScheduleByCustomIdAsync(int imoNumber, string customId)
         {
-            return DeleteObject<Schedule>($"/api/v1/ships/{imoNumber}/schedules/{customId}/custom");
+            var encodedCustomId = EncodePathSegment(customId, nameof(customId));
+            return DeleteObject<Schedule>($"/api/v1/ships/{imoNumber}/schedules/{encodedCustomId}/custom");
         }
     }
 }
