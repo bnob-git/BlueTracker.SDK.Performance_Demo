@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BlueTracker.SDK.Performance.Core;
 using BlueTracker.SDK.Performance.DTO.Query;
 
@@ -53,7 +54,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns>The sample source</returns>
         public OnboardSampleSource Get(string sourceName)
         {
-            return GetObject<OnboardSampleSource>($"/api/v1/onboardSamples/sources/{sourceName}");
+            return GetObject<OnboardSampleSource>($"/api/v1/onboardSamples/sources/{Uri.EscapeDataString(sourceName)}");
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public OnboardSampleSource Create(string sourceName)
         {
-            return PostEmpty<OnboardSampleSource>($"/api/v1/onboardSamples/sources?sourceName={sourceName}");
+            return PostEmpty<OnboardSampleSource>($"/api/v1/onboardSamples/sources?sourceName={Uri.EscapeDataString(sourceName)}");
         }
     }
 }
