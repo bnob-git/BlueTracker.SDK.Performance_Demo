@@ -53,7 +53,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns>The sample source</returns>
         public NavSampleSource Get(string sourceName)
         {
-            return GetObject<NavSampleSource>($"/api/v1/navSamples/sources/{sourceName}");
+            return GetObject<NavSampleSource>($"/api/v1/navSamples/sources/{EncodeRouteValue(sourceName)}");
         }
 
         /// <summary>

@@ -50,7 +50,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public List<VoyageWithCargoParcels> GetVoyages(DateTime startDate, DateTime endDate, string chartererId, string chartererName)
         {
-            return GetObject<List<VoyageWithCargoParcels>>($"/api/v1/seaCargoCharter/voyages?startDate={startDate:yyyy-MM-ddTHH:mm}&endDate={endDate:yyyy-MM-ddTHH:mm}&chartererId={chartererId}&chartererName={chartererName}");
+            return GetObject<List<VoyageWithCargoParcels>>($"/api/v1/seaCargoCharter/voyages?startDate={startDate:yyyy-MM-ddTHH:mm}&endDate={endDate:yyyy-MM-ddTHH:mm}&chartererId={EncodeRouteValue(chartererId)}&chartererName={EncodeRouteValue(chartererName)}");
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace BlueTracker.SDK.Performance.Clients
         /// <returns></returns>
         public ChartererVoyageEmissionSplit GetVoyageEmissionSplit(int voyageId, string chartererId, string chartererName)
         {
-            return GetObject<ChartererVoyageEmissionSplit>($"/api/v1/seaCargoCharter/voyages/{voyageId}/split?chartererId={chartererId}&chartererName={chartererName}");
+            return GetObject<ChartererVoyageEmissionSplit>($"/api/v1/seaCargoCharter/voyages/{voyageId}/split?chartererId={EncodeRouteValue(chartererId)}&chartererName={EncodeRouteValue(chartererName)}");
         }
     }
 }
